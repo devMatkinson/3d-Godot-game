@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://dc82hbvarpijh"]
+[gd_scene load_steps=5 format=3 uid="uid://dc82hbvarpijh"]
 
-[node name="Node3D" type="Node3D"]
+[ext_resource type="Script" path="res://SpringArm3D.gd" id="1_ly25c"]
+[ext_resource type="Script" path="res://player.gd" id="1_n01w1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i4gw1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3p5pb"]
+
+[node name="Node3D" type="CharacterBody3D" groups=["Player"]]
+transform = Transform3D(0.401836, 0, 0.915712, 0.0800643, 0.99617, -0.0351341, -0.912205, 0.0874339, 0.400297, 0, 0, 0)
+script = ExtResource("1_n01w1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.806258, 0.0412645, 0.590122, -0.00263905, 0.997805, -0.0661662, -0.591558, 0.0517896, 0.804597, -0.0272909, 0.0349729, -0.0609416)
+shape = SubResource("SphereShape3D_i4gw1")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." groups=["Spring"]]
+script = ExtResource("1_ly25c")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+fov = 70.9712
+
+[node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
+transform = Transform3D(0.389907, 0.0813851, 0.917251, 0.016562, 0.995306, -0.0953509, -0.920705, 0.0523694, 0.386728, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.998958, -0.0450326, 0.00746062, 0.0440421, 0.993839, 0.10171, -0.011995, -0.101275, 0.994786, 0, 0, 0)
+mesh = SubResource("SphereMesh_3p5pb")

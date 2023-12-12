@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0toijv20cpgd"]
+
+[ext_resource type="PackedScene" uid="uid://dc82hbvarpijh" path="res://node_3d.tscn" id="1_v74uh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wh5hq"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ak32f"]
+sky_material = SubResource("ProceduralSkyMaterial_wh5hq")
+
+[sub_resource type="Environment" id="Environment_s5oep"]
+background_mode = 2
+sky = SubResource("Sky_ak32f")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_yaqo8"]
+size = Vector3(12, 12, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0p11d"]
+data = PackedVector3Array(-6, 6, 0.5, 6, 6, 0.5, -6, -6, 0.5, 6, 6, 0.5, 6, -6, 0.5, -6, -6, 0.5, 6, 6, -0.5, -6, 6, -0.5, 6, -6, -0.5, -6, 6, -0.5, -6, -6, -0.5, 6, -6, -0.5, 6, 6, 0.5, 6, 6, -0.5, 6, -6, 0.5, 6, 6, -0.5, 6, -6, -0.5, 6, -6, 0.5, -6, 6, -0.5, -6, 6, 0.5, -6, -6, -0.5, -6, 6, 0.5, -6, -6, 0.5, -6, -6, -0.5, 6, 6, 0.5, -6, 6, 0.5, 6, 6, -0.5, -6, 6, 0.5, -6, 6, -0.5, 6, 6, -0.5, -6, -6, 0.5, 6, -6, 0.5, -6, -6, -0.5, 6, -6, 0.5, 6, -6, -0.5, -6, -6, -0.5)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26683, 0.875624, 5.96046e-08)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_s5oep")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Node3D" parent="." instance=ExtResource("1_v74uh")]
+transform = Transform3D(-0.879262, 0.0871843, 0.468291, 0.0800643, 0.99617, -0.0351341, -0.469561, 0.00660134, -0.882876, 1.29491, 1.48212, 0.891008)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999927, 0.000574262, 0.0120626, 0.0120674, -0.00943253, -0.999882, -0.000460414, 0.999955, -0.00943877, 1.30166, -1.59635, 1.8154)
+mesh = SubResource("BoxMesh_yaqo8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0p11d")
