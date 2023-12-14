@@ -21,7 +21,7 @@ size = Vector3(12, 12, 1)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0p11d"]
 data = PackedVector3Array(-6, 6, 0.5, 6, 6, 0.5, -6, -6, 0.5, 6, 6, 0.5, 6, -6, 0.5, -6, -6, 0.5, 6, 6, -0.5, -6, 6, -0.5, 6, -6, -0.5, -6, 6, -0.5, -6, -6, -0.5, 6, -6, -0.5, 6, 6, 0.5, 6, 6, -0.5, 6, -6, 0.5, 6, 6, -0.5, 6, -6, -0.5, 6, -6, 0.5, -6, 6, -0.5, -6, 6, 0.5, -6, -6, -0.5, -6, 6, 0.5, -6, -6, 0.5, -6, -6, -0.5, 6, 6, 0.5, -6, 6, 0.5, 6, 6, -0.5, -6, 6, 0.5, -6, 6, -0.5, 6, 6, -0.5, -6, -6, 0.5, 6, -6, 0.5, -6, -6, -0.5, 6, -6, 0.5, 6, -6, -0.5, -6, -6, -0.5)
 
-[node name="Node3D" type="Node3D"]
+[node name="World" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26683, 0.875624, 5.96046e-08)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -32,10 +32,10 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Node3D" parent="." instance=ExtResource("1_v74uh")]
-transform = Transform3D(-0.879262, 0.0871843, 0.468291, 0.0800643, 0.99617, -0.0351341, -0.469561, 0.00660134, -0.882876, 1.29491, 1.48212, 0.891008)
+transform = Transform3D(-0.190555, -0.0193009, -0.981488, 0.0800643, 0.99617, -0.0351341, 0.978406, -0.0852769, -0.188279, 1.29491, 1.48212, 0.891008)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.999927, 0.000574262, 0.0120626, 0.0120674, -0.00943253, -0.999882, -0.000460414, 0.999955, -0.00943877, 1.30166, -1.59635, 1.8154)
+transform = Transform3D(1, -5.50928e-16, -3.4445e-08, -3.44406e-08, 0.0159866, -0.999872, 5.50656e-10, 0.999872, 0.0159866, 0, -1.48247, 0)
 mesh = SubResource("BoxMesh_yaqo8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
