@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0toijv20cpgd"]
+[gd_scene load_steps=13 format=3 uid="uid://d0toijv20cpgd"]
 
 [ext_resource type="PackedScene" uid="uid://dc82hbvarpijh" path="res://node_3d.tscn" id="1_v74uh"]
+[ext_resource type="PackedScene" uid="uid://ddi5xtu2btwed" path="res://enemy.tscn" id="2_1y10k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wh5hq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -45,7 +46,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Node3D" parent="." instance=ExtResource("1_v74uh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.845126, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62699, 1.73, 1.43147)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.04633, 0)
@@ -74,3 +75,6 @@ skin = SubResource("Skin_erpb7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_1i6do")
+
+[node name="Enemy" parent="." instance=ExtResource("2_1y10k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98608, 0.663439, 9.84111)

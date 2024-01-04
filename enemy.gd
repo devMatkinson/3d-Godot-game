@@ -23,8 +23,15 @@ func _process(delta):
 
 
 func _on_hitbox_area_entered(body):
-	if body.is_in_root("Bullet"):
+	if body.is_in_group("Bullet"):
 		health -=1
-	if health <= 0:
-		queue_free()
+		if health <= 0:
+			queue_free()
+	pass # Replace with function body.
+
+
+func _on_player_detect_area_entered(area):
+	if area.is_in_group("Player"):
+		player = area
+		player_detected = true
 	pass # Replace with function body.

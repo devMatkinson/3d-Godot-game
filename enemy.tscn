@@ -7,6 +7,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_23bvw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pwv1r"]
+radius = 0.705526
+height = 2.36805
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6td3n"]
 
@@ -30,3 +32,4 @@ shape = SubResource("CapsuleShape3D_pwv1r")
 shape = SubResource("CapsuleShape3D_6td3n")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]
