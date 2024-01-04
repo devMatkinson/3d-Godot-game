@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dc82hbvarpijh"]
+[gd_scene load_steps=7 format=3 uid="uid://dc82hbvarpijh"]
 
 [ext_resource type="Script" path="res://SpringArm3D.gd" id="1_ly25c"]
 [ext_resource type="Script" path="res://player.gd" id="1_n01w1"]
@@ -9,10 +9,6 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yw86l"]
 
 [sub_resource type="PlaceholderMesh" id="PlaceholderMesh_wnrtx"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ec166"]
-radius = 0.25
-height = 0.5
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0248475, -0.00919414, 0.0613169)
@@ -43,11 +39,7 @@ offset_bottom = 321.0
 mesh = SubResource("CapsuleMesh_yw86l")
 
 [node name="Marker3D" type="Marker3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3495)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.04587)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/Marker3D"]
 mesh = SubResource("PlaceholderMesh_wnrtx")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43017, 0, 0)
-mesh = SubResource("CapsuleMesh_ec166")

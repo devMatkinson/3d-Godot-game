@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@export var initialForce = 50.00
+@export var initialForce = -50.00
 
 var speed = 10.0
 # Called when the node enters the scene tree for the first time.

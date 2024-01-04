@@ -2,11 +2,14 @@ extends Camera3D
 var object_class = preload("res://ball.tscn")
 
 @onready var shoot_position = $"../../MeshInstance3D/Marker3D"
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame
+		
 func _process(delta):
 	var root = get_tree().get_root().get_node("World")
 	if Input.is_action_just_pressed("Shoot"):

@@ -1,7 +1,7 @@
 extends CharacterBody3D
 @onready var springArm = $SpringArm3D
 @onready var mesh : MeshInstance3D = $MeshInstance3D
-
+@onready var mouse_sen = 0.01
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -11,6 +11,13 @@ var object_class = preload("res://ball.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _input(event):
+	if event is InputEventMouseMotion:
+		mesh.rotation.x -= event.relative.y * mouse_sen
+		mesh.rotation.x = clamp(mesh.rotation.x, deg_to_rad(-90), deg_to_rad(30))
+		mesh.rotation.y -= event.relative.x * mouse_sen
+		mesh.rotation.y = wrapf(mesh.rotation.y, -PI, PI)
+		
 
 func _physics_process(delta):
 	# Add the gravity.

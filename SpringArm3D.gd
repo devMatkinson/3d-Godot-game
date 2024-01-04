@@ -1,5 +1,5 @@
 extends SpringArm3D
-@export var mouse_sensetivity := 0.005
+@export var mouse_sensetivity := 0.01
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
