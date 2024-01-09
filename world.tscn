@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0toijv20cpgd"]
+[gd_scene load_steps=15 format=3 uid="uid://d0toijv20cpgd"]
 
 [ext_resource type="PackedScene" uid="uid://dc82hbvarpijh" path="res://node_3d.tscn" id="1_v74uh"]
 [ext_resource type="PackedScene" uid="uid://ddi5xtu2btwed" path="res://enemy.tscn" id="2_1y10k"]
@@ -36,6 +36,11 @@ size = Vector3(1, 20, 40)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1i6do"]
 data = PackedVector3Array(-0.5, 10, 20, 0.5, 10, 20, -0.5, -10, 20, 0.5, 10, 20, 0.5, -10, 20, -0.5, -10, 20, 0.5, 10, -20, -0.5, 10, -20, 0.5, -10, -20, -0.5, 10, -20, -0.5, -10, -20, 0.5, -10, -20, 0.5, 10, 20, 0.5, 10, -20, 0.5, -10, 20, 0.5, 10, -20, 0.5, -10, -20, 0.5, -10, 20, -0.5, 10, -20, -0.5, 10, 20, -0.5, -10, -20, -0.5, 10, 20, -0.5, -10, 20, -0.5, -10, -20, 0.5, 10, 20, -0.5, 10, 20, 0.5, 10, -20, -0.5, 10, 20, -0.5, 10, -20, 0.5, 10, -20, -0.5, -10, 20, 0.5, -10, 20, -0.5, -10, -20, 0.5, -10, 20, 0.5, -10, -20, -0.5, -10, -20)
 
+[sub_resource type="BoxMesh" id="BoxMesh_qe5js"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_udfnu"]
+size = Vector3(1.01178, 1.00372, 0.978151)
+
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -44,9 +49,6 @@ environment = SubResource("Environment_s5oep")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Node3D" parent="." instance=ExtResource("1_v74uh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62699, 1.73, 1.43147)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.04633, 0)
@@ -78,3 +80,18 @@ shape = SubResource("ConcavePolygonShape3D_1i6do")
 
 [node name="Enemy" parent="." instance=ExtResource("2_1y10k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98608, 0.663439, 9.84111)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 18.4569, -5.03837, 1.82438)
+mesh = SubResource("BoxMesh_qe5js")
+skeleton = NodePath("../MeshInstance3D3/StaticBody3D/CollisionShape3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0816231, -0.11507, 0.0458555)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0835266, 0.11478, -0.0534048)
+shape = SubResource("BoxShape3D_udfnu")
+
+[node name="Player" parent="." instance=ExtResource("1_v74uh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97626, 3.45606, -2.84039)

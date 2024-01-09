@@ -7,7 +7,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_t1rim"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_sr2vc"]
-radius = 1.0
+radius = 0.789894
 
 [node name="Bullet" type="RigidBody3D"]
 script = ExtResource("1_uy3bm")
@@ -22,3 +22,9 @@ shape = SubResource("SphereShape3D_t1rim")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_sr2vc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

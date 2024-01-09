@@ -13,3 +13,8 @@ func _ready():
 func _process(delta):
 	#position = global_transform.basis.z * speed * delta
 	pass 
+
+
+func _on_timer_timeout():
+	queue_free()
+	pass # Replace with function body.

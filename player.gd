@@ -4,7 +4,7 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
+var player_health = 10.0
 var angular_acceleration:= 7
 
 var object_class = preload("res://ball.tscn")
@@ -39,3 +39,25 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_area_3d_area_entered(area):
+	$Timer.start()
+	$Timer.paused = false
+	pass # Replace with function body.
+
+
+func _on_timer_timeout():
+	player_health-=1
+	$ProgressBar.value = player_health * 10
+	pass # Replace with function body.
+
+
+func _on_area_3d_body_entered(body):
+	#$Timer.start()
+	pass # Replace with function body.
+
+
+func _on_area_3d_area_exited(area):
+	$Timer.paused = true
+	pass # Replace with function body.
