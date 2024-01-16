@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-const SPEED = 100.0
+const SPEED = 25.0
 var player_detected = false
 var player = null
 var health = 10
@@ -27,4 +27,9 @@ func _on_player_detect_area_entered(area):
 		print("player entered")
 		player = area
 		player_detected = true
+	pass # Replace with function body.
+
+
+func _on_player_detect_area_exited(area):
+	player_detected = false
 	pass # Replace with function body.

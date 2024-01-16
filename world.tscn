@@ -90,7 +90,7 @@ skeleton = NodePath("../MeshInstance3D3/StaticBody3D/CollisionShape3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0816231, -0.11507, 0.0458555)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0835266, 0.11478, -0.0534048)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0937625, 0.104626, -0.0519865)
 shape = SubResource("BoxShape3D_udfnu")
 
 [node name="Player" parent="." instance=ExtResource("1_v74uh")]

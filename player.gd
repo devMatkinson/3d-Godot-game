@@ -10,10 +10,14 @@ var angular_acceleration:= 7
 var object_class = preload("res://ball.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var is_alive = true
 
 
 func _physics_process(delta):
 	# Add the gravity.
+	if !is_alive:
+		return
+		
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -41,23 +45,34 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _on_area_3d_area_entered(area):
+func _on_area_3d_area_entered(body):
 	$Timer.start()
 	$Timer.paused = false
 	pass # Replace with function body.
 
 
 func _on_timer_timeout():
-	player_health-=1
+	player_health-= 1
 	$ProgressBar.value = player_health * 10
+	if player_health <= 0:
+		is_alive = false
+		$AnimationPlayer. play("game over")
+		$Timer.paused =true
 	pass # Replace with function body.
 
 
 func _on_area_3d_body_entered(body):
-	#$Timer.start()
+	print('body entered')
+	if body.is_in_group('Enemy'):
+	
+		velocity = body.linear_velocity * 10
+		velocity.y = 0
+		move_and_slide()
 	pass # Replace with function body.
 
 
 func _on_area_3d_area_exited(area):
 	$Timer.paused = true
 	pass # Replace with function body.
+	
+	
