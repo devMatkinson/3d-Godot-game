@@ -48,23 +48,32 @@ func _physics_process(delta):
 func _on_area_3d_area_entered(body):
 	$Timer.start()
 	$Timer.paused = false
+	if body.is_in_group('Emeny_Punch'):
+		player_health-= 1
+		$ProgressBar.value = player_health * 10
+		if player_health <= 0:
+			is_alive = false
+			Game_Over()
+			$AnimationPlayer.play("game over")
+		move_and_slide()
 	pass # Replace with function body.
 
 
 func _on_timer_timeout():
-	player_health-= 1
-	$ProgressBar.value = player_health * 10
-	if player_health <= 0:
-		is_alive = false
-		$AnimationPlayer. play("game over")
-		$Timer.paused =true
+	#player_health-= 1
+	#$ProgressBar.value = player_health * 10
+	#if player_health <= 0:
+		#is_alive = false
+		#Game_Over()
+		#$AnimationPlayer. play("game over")
+		#$Timer.paused =true
 	pass # Replace with function body.
 
 
 func _on_area_3d_body_entered(body):
-	print('body entered')
+	print(body.get_groups())
 	if body.is_in_group('Enemy'):
-	
+		
 		velocity = body.linear_velocity * 10
 		velocity.y = 0
 		move_and_slide()
@@ -74,5 +83,8 @@ func _on_area_3d_body_entered(body):
 func _on_area_3d_area_exited(area):
 	$Timer.paused = true
 	pass # Replace with function body.
+	
+func Game_Over():
+	$Panel.visible =  true
 	
 	

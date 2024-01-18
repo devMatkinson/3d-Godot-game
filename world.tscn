@@ -1,7 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0toijv20cpgd"]
+[gd_scene load_steps=17 format=3 uid="uid://d0toijv20cpgd"]
 
+[ext_resource type="Script" path="res://world.gd" id="1_c8i28"]
 [ext_resource type="PackedScene" uid="uid://dc82hbvarpijh" path="res://node_3d.tscn" id="1_v74uh"]
 [ext_resource type="PackedScene" uid="uid://ddi5xtu2btwed" path="res://enemy.tscn" id="2_1y10k"]
+[ext_resource type="PackedScene" uid="uid://dgifd6xrtc7gu" path="res://enemy_spawner.tscn" id="4_8xmq3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wh5hq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -42,6 +44,7 @@ data = PackedVector3Array(-0.5, 10, 20, 0.5, 10, 20, -0.5, -10, 20, 0.5, 10, 20,
 size = Vector3(1.01178, 1.00372, 0.978151)
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_c8i28")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_s5oep")
@@ -95,3 +98,9 @@ shape = SubResource("BoxShape3D_udfnu")
 
 [node name="Player" parent="." instance=ExtResource("1_v74uh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97626, 3.45606, -2.84039)
+
+[node name="Enemy_Spawner" parent="." instance=ExtResource("4_8xmq3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.543, -0.5007, 15.6652)
+
+[node name="Enemy_Spawner2" parent="." instance=ExtResource("4_8xmq3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.01571, -0.500701, 15.7081)

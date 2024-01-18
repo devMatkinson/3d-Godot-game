@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddi5xtu2btwed"]
+[gd_scene load_steps=18 format=3 uid="uid://ddi5xtu2btwed"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_ufy4t"]
+[ext_resource type="PackedScene" uid="uid://dj5mtbcr8gfb5" path="res://progress_bar.tscn" id="2_ojdsp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcm5g"]
 albedo_color = Color(1, 0.14902, 0.0980392, 1)
@@ -15,8 +16,8 @@ radius = 0.705526
 height = 2.36805
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6td3n"]
-radius = 2.11271
-height = 4.35266
+radius = 9.26383
+height = 18.5277
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thktq"]
 albedo_color = Color(1, 0, 0.0784314, 1)
@@ -114,8 +115,14 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lpmf5"]
+radius = 0.75
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k0c0w"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ggtgn"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8nx6c"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Enemy" type="RigidBody3D" groups=["Enemy"]]
 axis_lock_angular_x = true
@@ -147,9 +154,6 @@ mesh = SubResource("SphereMesh_5cepx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2"]
 shape = SubResource("SphereShape3D_0qwej")
 
-[node name="Skeleton3D" type="Skeleton3D" parent="MeshInstance3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.43797, 0)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3ijsq")
@@ -160,15 +164,44 @@ autoplay = "Punch"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16415e-10, 0.502293, -0.535737)
 shape = SubResource("SphereShape3D_lpmf5")
 
-[node name="Area3D" type="Area3D" parent="CollisionShape3D3" groups=["Enemy"]]
+[node name="Area3D" type="Area3D" parent="CollisionShape3D3" groups=["Emeny_Punch"]]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="CollisionShape3D3/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502293, -0.535737)
 shape = SubResource("SphereShape3D_lpmf5")
 
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CollisionShape3D3/Area3D/CollisionShape3D2"]
+transform = Transform3D(0.19994, 0.00487946, 0, -0.00487946, 0.19994, 0, 0, 0, 0.2, 0.466, 0.191, 0.052)
+mesh = SubResource("CapsuleMesh_k0c0w")
+skeleton = NodePath("../Fist")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CollisionShape3D3/Area3D/CollisionShape3D2"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.493844, 0.191, -0.143088)
+mesh = SubResource("CapsuleMesh_k0c0w")
+skeleton = NodePath("../Fist")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D3/Area3D/CollisionShape3D2"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.464234, 0.191, -0.343)
+mesh = SubResource("CapsuleMesh_k0c0w")
+skeleton = NodePath("../Fist")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D3/Area3D/CollisionShape3D2"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.416964, 0.190991, 0.253185)
+mesh = SubResource("CapsuleMesh_k0c0w")
+skeleton = NodePath("../Fist")
+
 [node name="Fist" type="MeshInstance3D" parent="CollisionShape3D3/Area3D/CollisionShape3D2"]
 mesh = SubResource("SphereMesh_ggtgn")
 skeleton = NodePath("../../../../AnimationPlayer")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.999973, -0.00710053, -0.00176366, 0.00708074, 0.999915, -0.0109865, 0.00184149, 0.0109737, 0.999938, -0.0537517, 0.0549245, 0.104237)
+texture = SubResource("ViewportTexture_8nx6c")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="ProgressBar" parent="SubViewport" instance=ExtResource("2_ojdsp")]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]

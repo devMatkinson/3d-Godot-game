@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dc82hbvarpijh"]
+[gd_scene load_steps=13 format=3 uid="uid://dc82hbvarpijh"]
 
 [ext_resource type="Script" path="res://SpringArm3D.gd" id="1_ly25c"]
 [ext_resource type="Script" path="res://player.gd" id="1_n01w1"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="3_bpm77"]
+[ext_resource type="FontFile" uid="uid://p6j2gnwtgy1l" path="res://Fonts/arcadeclassic/ARCADECLASSIC.TTF" id="4_6442u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xqfy4"]
 
@@ -11,21 +12,8 @@
 [sub_resource type="PlaceholderMesh" id="PlaceholderMesh_wnrtx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jnyqa"]
-
-[sub_resource type="Animation" id="Animation_lqxwy"]
-resource_name = "game over"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.5708)]
-}
+radius = 0.75
+height = 2.25
 
 [sub_resource type="Animation" id="Animation_bc4tx"]
 length = 0.001
@@ -42,11 +30,29 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_lqxwy"]
+resource_name = "game over"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.5708)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u1pl5"]
 _data = {
 "RESET": SubResource("Animation_bc4tx"),
 "game over": SubResource("Animation_lqxwy")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjgig"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0248475, -0.00919414, 0.0613169)
@@ -70,7 +76,7 @@ transform = Transform3D(0.389907, 0.0813851, 0.917251, 0.016562, 0.995306, -0.09
 mesh = SubResource("CapsuleMesh_yw86l")
 
 [node name="Marker3D" type="Marker3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.18295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289256, 1.18295)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/Marker3D"]
 mesh = SubResource("PlaceholderMesh_wnrtx")
@@ -92,6 +98,25 @@ value = 100.0
 libraries = {
 "": SubResource("AnimationLibrary_u1pl5")
 }
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = 341.0
+offset_top = 206.0
+offset_right = 758.0
+offset_bottom = 393.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qjgig")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 57.0
+offset_right = 420.0
+offset_bottom = 188.0
+theme_override_colors/default_color = Color(1, 0.470588, 0.4, 1)
+theme_override_fonts/normal_font = ExtResource("4_6442u")
+theme_override_font_sizes/normal_font_size = 75
+text = "Game Over"
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

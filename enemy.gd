@@ -16,6 +16,7 @@ func _process(delta):
 func _on_hitbox_area_entered(body):
 	if body.is_in_group("Bullet"):
 		health -=1
+		$SubViewport/ProgressBar.value = health * 10
 		if health <= 0:
 			queue_free()
 	pass # Replace with function body.
