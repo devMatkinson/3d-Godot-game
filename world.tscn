@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://d0toijv20cpgd"]
+[gd_scene load_steps=22 format=3 uid="uid://d0toijv20cpgd"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_c8i28"]
 [ext_resource type="PackedScene" uid="uid://dc82hbvarpijh" path="res://node_3d.tscn" id="1_v74uh"]
 [ext_resource type="PackedScene" uid="uid://ddi5xtu2btwed" path="res://enemy.tscn" id="2_1y10k"]
+[ext_resource type="Texture2D" uid="uid://dfc4nev8tw4hv" path="res://limestone-cliffs-bl/limestone-cliffs_albedo.png" id="2_ow7mj"]
 [ext_resource type="PackedScene" uid="uid://dgifd6xrtc7gu" path="res://enemy_spawner.tscn" id="4_8xmq3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wh5hq"]
@@ -18,17 +19,28 @@ sky = SubResource("Sky_ak32f")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0sc5"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_yaqo8"]
+material = SubResource("StandardMaterial3D_c0sc5")
 size = Vector3(40, 40, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dd6yw"]
 data = PackedVector3Array(-20, 20, 0.5, 20, 20, 0.5, -20, -20, 0.5, 20, 20, 0.5, 20, -20, 0.5, -20, -20, 0.5, 20, 20, -0.5, -20, 20, -0.5, 20, -20, -0.5, -20, 20, -0.5, -20, -20, -0.5, 20, -20, -0.5, 20, 20, 0.5, 20, 20, -0.5, 20, -20, 0.5, 20, 20, -0.5, 20, -20, -0.5, 20, -20, 0.5, -20, 20, -0.5, -20, 20, 0.5, -20, -20, -0.5, -20, 20, 0.5, -20, -20, 0.5, -20, -20, -0.5, 20, 20, 0.5, -20, 20, 0.5, 20, 20, -0.5, -20, 20, 0.5, -20, 20, -0.5, 20, 20, -0.5, -20, -20, 0.5, 20, -20, 0.5, -20, -20, -0.5, 20, -20, 0.5, 20, -20, -0.5, -20, -20, -0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7fl6"]
+albedo_texture = ExtResource("2_ow7mj")
+
 [sub_resource type="BoxMesh" id="BoxMesh_jton6"]
 size = Vector3(40, 20, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ie4jv"]
+
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jl302"]
 data = PackedVector3Array(-20, 10, 0.5, 20, 10, 0.5, -20, -10, 0.5, 20, 10, 0.5, 20, -10, 0.5, -20, -10, 0.5, 20, 10, -0.5, -20, 10, -0.5, 20, -10, -0.5, -20, 10, -0.5, -20, -10, -0.5, 20, -10, -0.5, 20, 10, 0.5, 20, 10, -0.5, 20, -10, 0.5, 20, 10, -0.5, 20, -10, -0.5, 20, -10, 0.5, -20, 10, -0.5, -20, 10, 0.5, -20, -10, -0.5, -20, 10, 0.5, -20, -10, 0.5, -20, -10, -0.5, 20, 10, 0.5, -20, 10, 0.5, 20, 10, -0.5, -20, 10, 0.5, -20, 10, -0.5, 20, 10, -0.5, -20, -10, 0.5, 20, -10, 0.5, -20, -10, -0.5, 20, -10, 0.5, 20, -10, -0.5, -20, -10, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6sga"]
+albedo_texture = ExtResource("2_ow7mj")
 
 [sub_resource type="BoxMesh" id="BoxMesh_4wkdm"]
 size = Vector3(1, 20, 40)
@@ -64,7 +76,9 @@ shape = SubResource("ConcavePolygonShape3D_dd6yw")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.5, 19.5)
+material_override = SubResource("StandardMaterial3D_b7fl6")
 mesh = SubResource("BoxMesh_jton6")
+surface_material_override/0 = SubResource("StandardMaterial3D_ie4jv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
 
@@ -73,6 +87,7 @@ shape = SubResource("ConcavePolygonShape3D_jl302")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 9.5, 0)
+material_override = SubResource("StandardMaterial3D_c6sga")
 mesh = SubResource("BoxMesh_4wkdm")
 skin = SubResource("Skin_erpb7")
 
@@ -85,7 +100,7 @@ shape = SubResource("ConcavePolygonShape3D_1i6do")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98608, 0.663439, 9.84111)
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 18.4569, -5.03837, 1.82438)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 18.4569, -4.58532, 1.82438)
 mesh = SubResource("BoxMesh_qe5js")
 skeleton = NodePath("../MeshInstance3D3/StaticBody3D/CollisionShape3D")
 
